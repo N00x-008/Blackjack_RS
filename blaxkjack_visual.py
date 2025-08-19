@@ -112,8 +112,6 @@ def reiniciar():
     iniciar_turno()
 
 
-# ---------------- INTERFAZ ----------------
-
 ventana = tk.Tk()
 ventana.title("Blackjack - ¡21!")
 
@@ -158,3 +156,4 @@ tk.Label(
 ).pack(pady=20)
 iniciar_turno()
 ventana.mainloop()
+
