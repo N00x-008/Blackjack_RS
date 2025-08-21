@@ -34,18 +34,18 @@ def show_cards(cards, label_cards, label_total):
     label_total.config(text=f"Total: {total}")
 
 
-# Función de ask card
+# ask card function
 def ask_card():
     global turn
-    nueva = card()
+    new_card = card()
 
     if turn == 1:
-        cards_p1.append(nueva)
+        cards_p1.append(new_card)
         show_cards(cards_p1, lbl_p1_cards, lbl_p1_total)
         if sum(v for v, _ in cards_p1) >= 21 or len(cards_p1) >= 5:
             skip()
     else:
-        cards_p2.append(nueva)
+        cards_p2.append(new_card)
         show_cards(cards_p2, lbl_p2_cards, lbl_p2_total)
         if sum(v for v, _ in cards_p2) >= 21 or len(cards_p2) >= 5:
             end_game()
@@ -64,7 +64,7 @@ def skip():
 
 
 # turn of player 1
-def iniciar_turn():
+def start_turn():
     global cards_p1
     cards_p1 = [card(), card()]
     show_cards(cards_p1, lbl_p1_cards, lbl_p1_total)
@@ -106,19 +106,19 @@ def restart():
     lbl_p2_total.config(text="Total: 0")
     btn_card.config(state="normal")
     btn_skip.config(state="normal")
-    iniciar_turn()
+    start_turn()
 
 
-ventana = tk.Tk()
-ventana.title("Blackjack - ¡21!")
+window = tk.Tk()
+window.title("Blackjack - ¡21!")
 
-tk.Label(ventana, text="Blackjack", font=("Arial", 20, "bold")).pack(pady=10)
+tk.Label(window, text="Blackjack", font=("Arial", 20, "bold")).pack(pady=10)
 
-lbl_turn = tk.Label(ventana, text="turno: jugador 1", font=("Arial", 14))
+lbl_turn = tk.Label(window, text="turno: jugador 1", font=("Arial", 14))
 lbl_turn.pack()
 
 # player 1
-frame_p1 = tk.LabelFrame(ventana, text="jugador 1", padx=10, pady=10)
+frame_p1 = tk.LabelFrame(window, text="jugador 1", padx=10, pady=10)
 frame_p1.pack(padx=10, pady=5, fill="x")
 
 lbl_p1_cards = tk.Label(frame_p1, text="", font=("Courier", 14))
@@ -127,7 +127,7 @@ lbl_p1_total = tk.Label(frame_p1, text="Total: 0", font=("Arial", 12))
 lbl_p1_total.pack()
 
 # player 2
-frame_p2 = tk.LabelFrame(ventana, text="jugador 2", padx=10, pady=10)
+frame_p2 = tk.LabelFrame(window, text="jugador 2", padx=10, pady=10)
 frame_p2.pack(padx=10, pady=5, fill="x")
 
 lbl_p2_cards = tk.Label(frame_p2, text="", font=("Courier", 14))
@@ -136,22 +136,22 @@ lbl_p2_total = tk.Label(frame_p2, text="Total: 0", font=("Arial", 12))
 lbl_p2_total.pack()
 
 # buttons
-frame_botones = tk.Frame(ventana)
-frame_botones.pack(pady=10)
+frame_buttons = tk.Frame(window)
+frame_buttons.pack(pady=10)
 
-btn_card = tk.Button(frame_botones, text="pedir una carta", width=12, command=ask_card)
+btn_card = tk.Button(frame_buttons, text="pedir una carta", width=12, command=ask_card)
 btn_card.grid(row=0, column=0, padx=10)
 
-btn_skip = tk.Button(frame_botones, text="pasar", width=12, command=skip)
+btn_skip = tk.Button(frame_buttons, text="pasar", width=12, command=skip)
 btn_skip.grid(row=0, column=1, padx=10)
 
-btn_restart = tk.Button(ventana, text="reiniciar el juego", command=restart)
+btn_restart = tk.Button(window, text="reiniciar el juego", command=restart)
 btn_restart.pack(pady=5)
 
 tk.Label(
-    ventana,
+    window,
     text="Kimberly Sujey Reyes Sandoval - 1D entornos virtuales y negocios digitales BIS",
     font=("Arial", 12),
 ).pack(pady=20)
-iniciar_turn()
-ventana.mainloop()
+start_turn()
+window.mainloop()
